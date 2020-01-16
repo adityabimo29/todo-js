@@ -46,7 +46,10 @@ function showTodos(){
     ul.innerHTML = '';
     for(let i = 0 ; i < ware.length ; i++){
         let li = document.createElement('li');
-        li.appendChild(document.createTextNode(ware[i]));
+        let input = document.createElement('input');
+        input.setAttribute('onkeypress',"javascript: if(event.keyCode == 13) editItem(event)");
+        input.value = ware[i];    
+        li.appendChild(input);
         
         let removeBtn = document.createElement('span');
         removeBtn.appendChild(document.createTextNode("X"));
@@ -58,3 +61,23 @@ function showTodos(){
     }
     
 }
+
+function editItem(e){
+    
+    let item  = e.target;
+    
+    if(e.which === 13 && item.value.trim().length > 0){
+        let itemArray = ul.getElementsByTagName('input');
+        // alert(itemArray[0].value)
+        ware = [];
+        for(let i = 0 ; i < itemArray.length ; i++){
+                ware.push(itemArray[i].value);
+        }
+        console.log(ware);
+    }else{
+        showTodos();
+        return false;
+    }
+}
+
+
