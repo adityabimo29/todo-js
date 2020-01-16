@@ -6,16 +6,7 @@ let ware = ['Champions Of Europe'];
 
 function createList(){
     ware.push(data.value);
-    let li = document.createElement('li');
-    li.appendChild(document.createTextNode(data.value));
-    
-    let removeBtn = document.createElement('span');
-    removeBtn.appendChild(document.createTextNode("X"));
-    removeBtn.className = "badge badge-danger badge-pill";
-    removeBtn.setAttribute("onclick","deleteItem(event)");
-    li.className = "list-group-item d-flex justify-content-between align-items-center";
-    li.appendChild(removeBtn);
-    ul.appendChild(li);
+    showTodos();
     data.value = "";
 }
 
@@ -38,18 +29,32 @@ function add(){
 
 function deleteItem(e){
     let item  = e.target;
-    
-
     let itemArray = ul.getElementsByTagName('li');
 
     for(let i = 0 ; i < itemArray.length ; i++){
         if(itemArray[i] === item.parentNode){
             ware.splice(i,1);
-            console.log(itemArray[i]);
-            console.log(item.parentNode);
         }
         
     }
-    ul.removeChild(item.parentNode);
+    showTodos();
     console.log(ware);
+}
+
+
+function showTodos(){
+    ul.innerHTML = '';
+    for(let i = 0 ; i < ware.length ; i++){
+        let li = document.createElement('li');
+        li.appendChild(document.createTextNode(ware[i]));
+        
+        let removeBtn = document.createElement('span');
+        removeBtn.appendChild(document.createTextNode("X"));
+        removeBtn.className = "badge badge-danger badge-pill";
+        removeBtn.setAttribute("onclick","deleteItem(event)");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.appendChild(removeBtn);
+        ul.appendChild(li);
+    }
+    
 }
