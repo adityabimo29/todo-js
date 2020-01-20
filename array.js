@@ -2,10 +2,22 @@ let data = document.querySelector('.add');
 let ul   = document.querySelector('.my-ul');
 let items= document.querySelectorAll('li');
 let ware = ['Champions Of Europe'];
+if(localStorage.getItem("todos") !== null){
+    ware = [];
+    let oldData = localStorage.getItem("todos").split(",");
+    for(let i = 0 ; i < oldData.length ; i++){
+        ware.push(oldData[i]);
+    }
+    // ware.push(JSON.stringify(localStorage.getItem("todos").split(",")));
+}
 
+    
+
+showTodos();
 
 function createList(){
     ware.push(data.value);
+    localStorage.setItem("todos",ware);
     showTodos();
     data.value = "";
 }
@@ -51,6 +63,8 @@ function deleteItem(e){
         
     }
     showTodos();
+    localStorage.clear();
+    localStorage.setItem("todos",ware);
     console.log(ware);
 }
 
@@ -87,6 +101,8 @@ function editItem(e){
                 ware.push(itemArray[i].value);
         }
         console.log(ware);
+        localStorage.clear();
+        localStorage.setItem("todos",ware);
         alert("Edit Successfully.");
     }else{
         showTodos();
