@@ -27,6 +27,19 @@ function add(){
     }
 }
 
+
+function addEnter(e){
+    let item  = e.target;
+    
+    if(e.which === 13 && item.value.trim().length > 0){
+        createList();
+        console.log(ware);
+    }else{
+        showTodos();
+        return false;
+    }
+}
+
 function deleteItem(e){
     let item  = e.target;
     let itemArray = ul.getElementsByTagName('li');
