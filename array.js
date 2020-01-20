@@ -10,7 +10,7 @@ if(localStorage.getItem("todos") !== null){
     }
     // ware.push(JSON.stringify(localStorage.getItem("todos").split(",")));
 }else{
-    localStorage.setItem("todos",ware);
+    localStorage.setItem("todos","Champions Of Europe");
 }
 
     
@@ -66,7 +66,10 @@ function deleteItem(e){
     }
     showTodos();
     localStorage.clear();
-    localStorage.setItem("todos",ware);
+    if(itemArray.length > 0){
+        localStorage.setItem("todos",ware);
+    }
+    
     console.log(ware);
 }
 
