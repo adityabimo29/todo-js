@@ -87,6 +87,7 @@ function editItem(e){
                 ware.push(itemArray[i].value);
         }
         console.log(ware);
+        alert("Edit Successfully.");
     }else{
         showTodos();
         return false;
