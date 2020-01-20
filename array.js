@@ -9,6 +9,9 @@ if(localStorage.getItem("todos") !== null){
         ware.push(oldData[i]);
     }
     // ware.push(JSON.stringify(localStorage.getItem("todos").split(",")));
+}else{
+    ware.push(data.value);
+    localStorage.setItem("todos",ware);
 }
 
     
